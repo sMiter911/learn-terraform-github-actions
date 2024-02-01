@@ -21,9 +21,9 @@ provider "aws" {
 }
 
 resource "random_pet" "sg" {
-  provider = aws.ec2
+  length    = 2
+  separator = "_"
 }
-
 data "aws_ami" "ubuntu" {
   most_recent = true
 
