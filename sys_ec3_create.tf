@@ -1,29 +1,10 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "4.52.0"
-    }
-    random = {
-      source  = "hashicorp/random"
-      version = "3.4.3"
-    }
-  }
-  required_version = ">= 1.1.0"
-}
-
 provider "aws" {
+  region = "us-west-2"
   alias  = "ec2"
-  region = "us-east-1"
 }
 
-resource "random_pet" "sg" {
-  length    = 2
-  separator = "_"
-}
+# resource "random_pet" "sg" {}
+
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -56,7 +37,7 @@ resource "aws_instance" "web" {
 }
 
 resource "aws_security_group" "web-sg" {
-  name = "${random_pet.sg.id}-sg"
+  name = "2_e-sg"
   ingress {
     from_port   = 8080
     to_port     = 8080
